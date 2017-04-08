@@ -1,0 +1,239 @@
+// praact.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+
+using namespace std;
+
+void main()
+{
+	string nombre1, nombre2;
+	int longitud,pos1,pos2,cont=0,option,aux;
+	cout<<"-----------MENU-----------"<<endl;
+	cout<<"(1) leer datos string"<<endl;
+	cout<<"(2) uso de length para determinar la longitud de un string"<<endl;
+	cout<<"(3) uso de compare para determinar si dos cadenas son iguales"<<endl;
+	cout<<"(4) uso de elementos individuales (Numero de vocales en el nombre)"<<endl;
+	cout<<"(5) uso de elementos individuales con at (Numero de vocales en el nombre)"<<endl;
+	cout<<"(6) Sacar desde una letra hasta el final del string"<<endl;
+	cout<<"(7) sacar una parte del string"<<endl;
+	cout<<"(8) Intercambia string"<<endl;
+	cout<<"(9) Encuentra UN caracter en string"<<endl;
+	cout<<"(10) Invertir una frase (ver si es palindromo) "<<endl;
+	cout<<"(11) Quitar las vocales"<<endl;
+	cout<<"(0) SALIR"<<endl;
+	cout<<endl;
+	cout<<"INGRESE UNA OPCION: ";
+	cin>>option;
+	switch (option)
+	{
+	case 1:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre: "<<endl;
+			getline(cin,nombre1);
+			cout<<"La palabra o el nombre sera: "<<nombre1<<endl;
+			cout<<endl;
+			break;
+		}
+	case 2:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre: "<<endl;
+			getline(cin,nombre1);
+			longitud=nombre1.length();
+			cout<<"La longitud sera de: "<<longitud<<" letras."<<endl;
+			cout<<endl;
+			break;
+		}
+	case 3:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre 1: "<<endl;
+			getline(cin,nombre1);
+			cout<<"Ingrese su palabra o nombre 2: "<<endl;
+			getline(cin,nombre2);
+			if(nombre1.compare(nombre2)==0)
+				cout<<"Son iguales";
+			else
+				cout<<"No son iguales";
+			cout<<endl;
+			break;
+		}
+	case 4:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre: "<<endl;
+			getline(cin,nombre1);
+			longitud=nombre1.length();
+			for (int i=0; i<longitud; i++)
+				if ( nombre1[i]=='a' || nombre1[i]=='e' ||  nombre1[i]=='i' || nombre1[i]=='o' || nombre1[i]=='u')
+					cont++;
+			cout<<"La palabra tiene: "<<cont<<" vocales"<<endl;
+			cout<<endl;
+			break;
+		}
+	case 5:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre: "<<endl;
+			getline(cin,nombre1);
+			longitud=nombre1.length();
+			for (int i=0; i<longitud; i++)
+				if ( nombre1.at(i)=='a' || nombre1.at(i)=='e' ||  nombre1.at(i)=='i' || nombre1.at(i)=='o' || nombre1.at(i)=='u')
+					cont++;
+			cout<<"La palabra tiene: "<<cont<<" vocales"<<endl;
+			cout<<endl;
+			break;
+		}
+	case 6:
+		{
+			string a;
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre: "<<endl;
+			getline(cin,nombre1);
+			cout<<"Indique desde que posicion quiere substraer: ";
+			cin>>pos1;
+			pos1=pos1-1;
+			a=nombre1.substr(pos1);
+			cout<<a;
+			cout<<endl;
+			break;
+		}
+	case 7:
+		{
+			string a;
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre: "<<endl;
+			getline(cin,nombre1);
+			cout<<"Ingrese desde que posicion quiere substraer: "<<endl;
+			cin>>pos1;
+			pos1=pos1-1;
+			cout<<"Ingrese hasta que psocion quiere substraer: "<<endl;
+			cin>>pos2;
+			pos2=pos2-pos1;
+			a=nombre1.substr(pos1,pos2);
+			cout<<a;
+			cout<<endl;
+			break;
+		}
+	case 8:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre 1: "<<endl;
+			getline(cin,nombre1);
+			cout<<"Ingrese su palabra o nombre 2: "<<endl;
+			getline(cin,nombre2);
+			nombre1.swap(nombre2);
+			cout<<"Ahora su primera palabra sera: "<<nombre1<<endl;
+			cout<<"Ahora su segunda palabra sera: "<<nombre2<<endl;
+			break;
+		}
+	case 9:
+		{
+			cin.ignore();
+			char x;
+			cout<<"Ingrese su palabra o nombre 1: "<<endl;
+			getline(cin,nombre1);
+			longitud=nombre1.length();
+			cout<<"Ingrese que letra quiere encontar: "<<endl;
+			cin>>x;
+			for(int i=0; i<longitud; i++)
+			{
+				if ( nombre1.at(i)=='x')
+				{
+					cout<<"La letra ("<<x<<")" <<"si esta en la palabra"<<endl;
+					cout<<"La posicion de la letra ("<<x<<") "<<"es: "<<i+1<<endl;
+				}
+			}
+			break;
+		}
+	case 10:
+		{
+			cin.ignore();
+			cout<<"Ingrese su palabra o nombre 1: "<<endl;
+			getline(cin,nombre1);
+			longitud=nombre1.length();
+			nombre2=nombre1;
+			for( int i=0; i<(longitud/2); i++)
+			{
+				aux=nombre1[i];
+				nombre1[i]=nombre1[longitud-1-i];
+				nombre1[longitud-1-i]=aux;
+			}
+			cout<<"El nombre ivertido es: ";
+			for (int j=0; j<longitud; j++)
+			{
+				cout<<nombre1[j];
+			}
+			cout<<endl;
+			if(nombre2.compare(nombre1)==0)
+				cout<<"SI es palindromo"<<endl;
+			else
+				cout<<"NO es palindromo"<<endl;
+			cout<<endl;
+			break;
+
+		}
+
+	case 11:
+		{
+			int i,contcons,contvoc;
+
+				contcons=0;
+
+				contvoc=0;
+
+				cin.ignore();
+
+				cout<<"ingrese el nombre"<<endl;
+
+				getline(cin,nombre1);
+
+				longitud=nombre1.length();
+
+				nombre2=nombre1;
+
+				for(i=0;i<longitud;i++)
+
+				{
+
+					if((nombre1[i]!='a')&&(nombre1[i]!='e')&&(nombre1[i]!='i')&&(nombre1[i]!='o')&&(nombre1[i]!='u'))
+
+						{nombre2[contcons]=nombre1[i];
+
+						contcons++;
+
+						}
+
+					else 
+
+						contvoc++;
+
+				}
+
+				cout<<"sin vocales es:";
+
+					for(i=0;i<longitud-contvoc;i++)
+
+					{
+
+						cout<<nombre2[i];
+
+					}
+
+				break;
+		}
+	case 0:
+		{
+			cout<<"SALIENDO DEL PROGRAMA..."<<endl;break;
+		}
+	default:
+		{
+			cout<<"Ingrese una opcion valida"<<endl;break;
+		}
+	}
+}
